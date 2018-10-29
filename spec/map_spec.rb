@@ -45,6 +45,18 @@ RSpec.describe "Map" do
 
 	end
 
+	it 'get direction' do
+		 expect(Map.GET_DIRECTION_BY_TURN(Map::UP, Map::LEFT)).to eq Map::LEFT
+		 expect(Map.GET_DIRECTION_BY_TURN(Map::DOWN, Map::LEFT)).to eq Map::RIGHT
+		 expect(Map.GET_DIRECTION_BY_TURN(Map::RIGHT, Map::LEFT)).to eq Map::UP
+		 expect(Map.GET_DIRECTION_BY_TURN(Map::LEFT, Map::LEFT)).to eq Map::DOWN
+
+		 expect(Map.GET_DIRECTION_BY_TURN(Map::UP, Map::RIGHT)).to eq Map::RIGHT
+		 expect(Map.GET_DIRECTION_BY_TURN(Map::DOWN, Map::RIGHT)).to eq Map::LEFT
+		 expect(Map.GET_DIRECTION_BY_TURN(Map::RIGHT, Map::RIGHT)).to eq Map::DOWN
+		 expect(Map.GET_DIRECTION_BY_TURN(Map::LEFT, Map::RIGHT)).to eq Map::UP
+	end
+
 
 
   end

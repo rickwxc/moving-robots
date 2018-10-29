@@ -71,4 +71,13 @@ class Robot
 		[@x, @y]
 	end
 
+	def turn(left_or_right)
+		if !self.been_placed?
+			return false
+		end
+
+		@direction = Map.GET_DIRECTION_BY_TURN(@direction, left_or_right)
+		true
+	end
+
 end

@@ -53,4 +53,19 @@ class Map
 		[@top, @right]
 	end
 
+	def self.GET_DIRECTION_BY_TURN(cur_dir, right_or_left)
+		r = {
+			RIGHT => DOWN,
+			DOWN => LEFT,
+			LEFT => UP,
+			UP => RIGHT,
+		}
+
+		if right_or_left == RIGHT
+			return r[cur_dir]
+		end
+
+		return r.invert[cur_dir]
+	end
+
 end

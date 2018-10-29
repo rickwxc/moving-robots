@@ -32,6 +32,10 @@ RSpec.describe "Robot" do
 		expect(robot.get_direction).to eq Map::UP
 	end
 
+	it 'can not turn if not placed' do
+		expect(robot.turn(Map::LEFT)).to eq false
+	end
+
 	it 'can not move if not placed' do
 		expect(robot.move).to eq false
 	end
@@ -75,7 +79,27 @@ RSpec.describe "Robot" do
 	end
 
 	it 'can turn' do
+		robot.place([0, 0])
+		robot.set_direction(Map::LEFT)
 
+		robot.turn(Map::LEFT)
+		expect(robot.get_direction).to eq Map::DOWN
+
+		robot.turn(Map::LEFT)
+		expect(robot.get_direction).to eq Map::RIGHT
+
+		robot.turn(Map::LEFT)
+		expect(robot.get_direction).to eq Map::UP
+
+		robot.turn(Map::LEFT)
+		expect(robot.get_direction).to eq Map::LEFT
+
+		robot.turn(Map::RIGHT)
+		expect(robot.get_direction).to eq Map::UP
+		robot.turn(Map::RIGHT)
+		expect(robot.get_direction).to eq Map::RIGHT
+		robot.turn(Map::RIGHT)
+		expect(robot.get_direction).to eq Map::DOWN
 	end
 
 	it 'can be place' do

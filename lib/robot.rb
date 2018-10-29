@@ -4,8 +4,16 @@ class Robot
 		@map = map
 		@x = nil
 		@y = nil
+		@direction = nil
 	end
 
+	def set_direction(direction)
+		@direction = direction
+	end
+
+	def get_direction
+		@direction
+	end
 
 	def place(point)
 		if !@map.is_valid(point)

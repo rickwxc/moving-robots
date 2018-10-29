@@ -33,11 +33,13 @@ RSpec.describe "Robot" do
 	end
 
 	it 'can not move if not placed' do
-
+		expect(robot.move).to eq false
 	end
 
 	it 'can not move if no direction' do
-
+		robot.place([0,0])
+		expect(robot.get_position).to eq [0, 0]
+		expect(robot.move).to eq false
 	end
 
 	it 'can move up' do
@@ -67,7 +69,6 @@ RSpec.describe "Robot" do
 		robot.move
 		expect(robot.get_position).to eq [1, 0]
 	end
-
 
 	it 'can report' do
 

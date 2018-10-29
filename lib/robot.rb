@@ -17,7 +17,7 @@ class Robot
 
 	def move
 		if !@direction or !self.been_placed?
-			return
+			return false
 		end
 
 		x = @x

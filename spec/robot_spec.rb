@@ -11,6 +11,14 @@ RSpec.describe "Robot" do
 		expect(robot.get_position).to eq nil
 	end
 
+	it 'been_placed?' do
+		expect(robot.been_placed?).to eq false
+		robot.place([5,5])
+		expect(robot.been_placed?).to eq false
+		robot.place([0,0])
+		expect(robot.been_placed?).to eq true
+	end
+
 	it 'nil if placed outside of map' do
 		expect(robot.place([5,5])).to eq false
 		expect(robot.get_position).to eq nil
@@ -32,12 +40,34 @@ RSpec.describe "Robot" do
 
 	end
 
-	it 'can move' do
+	it 'can move up' do
 		robot.place([0,0])
 		robot.set_direction(Map::UP)
 		robot.move
 		expect(robot.get_position).to eq [0, 1]
 	end
+
+	it 'can move right' do
+		robot.place([1,1])
+		robot.set_direction(Map::RIGHT)
+		robot.move
+		expect(robot.get_position).to eq [2, 1]
+	end
+
+	it 'can move left' do
+		robot.place([1,1])
+		robot.set_direction(Map::LEFT)
+		robot.move
+		expect(robot.get_position).to eq [0, 1]
+	end
+
+	it 'can move down' do
+		robot.place([1,1])
+		robot.set_direction(Map::DOWN)
+		robot.move
+		expect(robot.get_position).to eq [1, 0]
+	end
+
 
 	it 'can report' do
 

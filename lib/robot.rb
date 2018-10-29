@@ -15,6 +15,44 @@ class Robot
 		@direction
 	end
 
+	def move
+		if !@direction or !self.been_placed?
+			return
+		end
+
+		x = @x
+		y = @y
+
+		if @direction  == Map::LEFT
+			x = x - 1
+		elsif @direction  == Map::RIGHT
+			x = x + 1
+		elsif @direction  == Map::UP
+			y = y + 1
+		elsif @direction  == Map::DOWN
+			y = y - 1
+		else
+			return false
+		end
+		
+		if !@map.is_valid([x,y])
+			return false
+		end
+
+		@x = x
+		@y = y
+
+		return true
+	end
+
+	def been_placed?
+		if !@x || !@y
+			return false
+		end
+
+		return true
+	end
+
 	def place(point)
 		if !@map.is_valid(point)
 			return false
@@ -26,7 +64,7 @@ class Robot
 	end
 
 	def get_position
-		if !@x || !@y
+		if !self.been_placed?
 			return nil
 		end
 

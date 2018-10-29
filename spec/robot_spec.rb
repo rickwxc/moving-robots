@@ -11,11 +11,19 @@ RSpec.describe "Robot" do
 		expect(robot.get_position).to eq nil
 	end
 
+	it 'has_xy?' do
+		expect(robot.has_xy?).to eq false
+		robot.place([5,5])
+		expect(robot.has_xy?).to eq false
+		robot.place([0,0])
+		expect(robot.has_xy?).to eq true
+	end
+
 	it 'been_placed?' do
 		expect(robot.been_placed?).to eq false
-		robot.place([5,5])
-		expect(robot.been_placed?).to eq false
 		robot.place([0,0])
+		expect(robot.been_placed?).to eq false
+		robot.set_direction(Map::LEFT)
 		expect(robot.been_placed?).to eq true
 	end
 
@@ -74,8 +82,23 @@ RSpec.describe "Robot" do
 		expect(robot.get_position).to eq [1, 0]
 	end
 
-	it 'can report' do
+	it 'can echo' do
+		expect { robot.echo }.to output("\n").to_stdout
+		expect(robot.report).to eq nil
+		robot.place([0, 0])
+		expect(robot.report).to eq nil
+		expect { robot.echo }.to output("\n").to_stdout
+		robot.set_direction(Map::LEFT)
+		
+		expect { robot.echo }.to output((robot.report + "\n")).to_stdout
+	end
 
+	it 'can report' do
+		expect(robot.report).to eq nil
+		robot.place([0, 0])
+		expect(robot.report).to eq nil
+		robot.set_direction(Map::LEFT)
+		expect(robot.report).to eq "0, 0, #{Map::LEFT}"
 	end
 
 	it 'can turn' do

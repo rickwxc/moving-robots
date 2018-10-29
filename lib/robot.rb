@@ -16,7 +16,7 @@ class Robot
 	end
 
 	def move
-		if !@direction or !self.been_placed?
+		if !self.been_placed?
 			return false
 		end
 
@@ -45,8 +45,16 @@ class Robot
 		return true
 	end
 
-	def been_placed?
+	def has_xy?
 		if !@x || !@y
+			return false
+		end
+
+		return true
+	end
+
+	def been_placed?
+		if !@direction or !has_xy?
 			return false
 		end
 
@@ -64,7 +72,7 @@ class Robot
 	end
 
 	def get_position
-		if !self.been_placed?
+		if !self.has_xy?
 			return nil
 		end
 
@@ -78,6 +86,18 @@ class Robot
 
 		@direction = Map.GET_DIRECTION_BY_TURN(@direction, left_or_right)
 		true
+	end
+
+	def echo
+		puts self.report
+	end
+
+	def report
+		if !self.been_placed?
+			return nil
+		end
+
+		"#{@x}, #{@y}, #{@direction}"
 	end
 
 end

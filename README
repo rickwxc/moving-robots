@@ -1,0 +1,7 @@
+a robot can do
+- place anywhere on map
+- move towards current direction
+- rotate by left or right
+- never go outside of map
+- report current postion and direction
+- graphically print out robot and map
